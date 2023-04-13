@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "RedditApp"
 include ':app'
+include ':reddit_di'
+include ':reddit_data'
+include ':reddit_domain'
+include ':reddit_presentation'
