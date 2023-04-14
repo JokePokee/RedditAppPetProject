@@ -32,6 +32,14 @@ android {
 
 dependencies {
 
+    implementation project(":reddit:reddit_domain")
+    implementation project(":reddit:reddit_data")
+    implementation project(":reddit:reddit_presentation")
+
+    //Koin
+    implementation 'io.insert-koin:koin-android:3.3.2'
+    implementation 'io.insert-koin:koin-androidx-workmanager:3.3.2'
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
