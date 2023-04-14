@@ -4,7 +4,6 @@ import com.example.reddit_domain.model.RedditPage
 
 interface RedditRepository {
 
-    suspend fun firstFetchData()
+    suspend fun fetchData(nameId: String? = null, pageCount: Int)
 
-    suspend fun paginationFetchData(redditPage: RedditPage)
 }

@@ -34,7 +34,8 @@ android {
 
 dependencies {
 
-    implementation project(path: ':reddit:reddit_domain')
+    implementation project(":reddit:reddit_presentation")
+    implementation project(":reddit:reddit_di")
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'

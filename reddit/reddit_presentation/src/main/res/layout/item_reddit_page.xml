@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#81A35A">
+
+    <TextView
+        android:id="@+id/tvSubreddit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="16dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="r/zalypa" />
+
+    <TextView
+        android:id="@+id/tvAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubreddit"
+        tools:text="u/Zalupenko" />
+
+    <TextView
+        android:id="@+id/tvPostDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvAuthor"
+        app:layout_constraintTop_toBottomOf="@id/tvSubreddit"
+        tools:text="23h." />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPostDate"
+        tools:text="Congressman wants to make 32-hour workweek U.S. law to ‘increase the happiness of humankind’" />
+
+    <TextView
+        android:id="@+id/tvNumberOfComments"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:drawableStart="@drawable/comment_icon"
+        android:drawablePadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvCurrentRating"
+        app:layout_constraintTop_toBottomOf="@+id/ivThumbnail"
+        tools:text="2.4k Comments" />
+
+    <TextView
+        android:id="@+id/tvCurrentRating"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:drawableStart="@drawable/ic_upwotes_rate"
+        android:drawablePadding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivThumbnail"
+        tools:text="rate"
+
+
+        />
+
+    <ImageView
+        android:id="@+id/ivThumbnail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4sp"
+        android:layout_marginTop="8sp"
+        android:layout_marginBottom="8sp"
+        android:background="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNumberOfComments" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

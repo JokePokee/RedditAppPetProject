@@ -6,10 +6,11 @@ import retrofit2.http.Query
 
 interface RedditPageApi {
 
-    @GET("/top.json?limit=10")
-    suspend fun getDataFromPage(): JsonObject
     @GET("/top.json?")
-    suspend fun getPaginationData(@Query("limit") limit: Int = 10, @Query("after") name: String):JsonObject
+    suspend fun getDataFromPage(
+        @Query("limit") limit: Int = 10,
+        @Query("after") name: String? = null
+    ): JsonObject
 
 
 }
