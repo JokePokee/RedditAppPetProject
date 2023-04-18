@@ -20,7 +20,4 @@ class RedditSetupViewModel(
 
     val redditLiveData: LiveData<RedditPage> = _redditLiveData
 
-    fun getPageData(){
-
-    }
 }

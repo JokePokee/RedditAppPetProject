@@ -15,6 +15,5 @@ class RedditRepositoryImplementation(private val redditNetworkDataSource: Reddit
         return withContext(DefaultDispatcherProvider.io()) {
             redditNetworkDataSource.fetchData(nameId, pageCount)
         }
-
     }
 }
