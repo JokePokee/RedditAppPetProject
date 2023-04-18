@@ -1,4 +1,4 @@
-package com.example.reddit_data.datasources
+package com.example.reddit_data.network_service
 
 import com.google.gson.JsonObject
 import retrofit2.http.GET

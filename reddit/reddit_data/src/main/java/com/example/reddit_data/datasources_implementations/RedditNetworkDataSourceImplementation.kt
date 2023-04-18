@@ -1,4 +1,4 @@
-package com.example.reddit_data.repositories
+package com.example.reddit_data.datasources_implementations
 
 import com.example.reddit_data.datasources.RedditNetworkDataSource
 import com.example.reddit_data.network_service.RedditPageApi
@@ -8,13 +8,10 @@ import com.example.reddit_domain.model.RedditPage
 import com.example.reddit_domain.repositories.RedditRepository
 import kotlinx.coroutines.withContext
 
-class RedditRepositoryImplementation(private val redditNetworkDataSource: RedditNetworkDataSource) :
-    RedditRepository {
+class RedditNetworkDataSourceImplementation(private val redditPageApi: RedditPageApi) :
+    RedditNetworkDataSource {
 
     override suspend fun fetchData(nameId: String?, pageCount: Int): List<RedditPage> {
-        return withContext(DefaultDispatcherProvider.io()) {
-            redditNetworkDataSource.fetchData(nameId, pageCount)
-        }
-
+        return redditPageApi.getDataFromPage().toRedditPageList()
     }
 }

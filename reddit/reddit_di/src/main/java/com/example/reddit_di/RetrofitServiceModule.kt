@@ -1,6 +1,6 @@
 package com.example.reddit_di
 
-import com.example.reddit_data.datasources.RedditPageApi
+import com.example.reddit_data.network_service.RedditPageApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
