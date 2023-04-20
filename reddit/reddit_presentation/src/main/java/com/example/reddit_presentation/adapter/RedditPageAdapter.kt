@@ -9,10 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.reddit_domain.model.RedditPage
 import com.example.reddit_presentation.R
+import com.example.reddit_presentation.viewmodel.RedditSetupViewModel
 
 class RedditPageAdapter(val listener: Listener, val onScrolledToBottom: (RedditPage) -> (Unit)) :
     RecyclerView.Adapter<RedditPageAdapter.RedditPageViewHolder>() {
 
+
+    private val viewModel: RedditSetupViewModel by viewModel()
     private val data = mutableListOf<RedditPage>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RedditPageViewHolder {
@@ -24,6 +27,7 @@ class RedditPageAdapter(val listener: Listener, val onScrolledToBottom: (RedditP
 
     override fun getItemCount(): Int {
         return data.size
+    
     }
 
     override fun onBindViewHolder(holder: RedditPageViewHolder, position: Int) {
