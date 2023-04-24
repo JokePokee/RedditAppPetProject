@@ -16,13 +16,29 @@ class RedditSetupViewModel(
     private val fetchDataUseCase: FetchDataUseCase
 ) : ViewModel() {
 
-     var redditLiveData = MutableLiveData<List<RedditPage>>()
-
-    fun getDataFromPage() {
+    var redditLiveData = MutableLiveData<List<RedditPage>>()
+    var isLoading = false
+    init {
         viewModelScope.launch {
+            isLoading = true
             redditLiveData.value = fetchDataUseCase.execute()
-
-
+            isLoading = false
         }
     }
+
+    fun onPagination() {
+        if (isLoading.not()) {
+            viewModelScope.launch {
+                isLoading = true
+                val currentList = redditLiveData.value ?: emptyList()
+                redditLiveData.value = if (currentList.isNotEmpty()) {
+                    currentList + fetchDataUseCase.execute(currentList.last().name)
+                } else {
+                    fetchDataUseCase.execute()
+                }
+                isLoading = false
+            }
+        }
+    }
+
 }

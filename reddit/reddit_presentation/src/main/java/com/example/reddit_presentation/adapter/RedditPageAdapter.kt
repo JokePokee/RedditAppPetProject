@@ -15,7 +15,7 @@ class RedditPageAdapter(val listener: Listener, val onScrolledToBottom: (RedditP
     RecyclerView.Adapter<RedditPageAdapter.RedditPageViewHolder>() {
 
 
-    private val viewModel: RedditSetupViewModel by viewModel()
+
     private val data = mutableListOf<RedditPage>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RedditPageViewHolder {
