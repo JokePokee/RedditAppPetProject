@@ -12,6 +12,6 @@ class RedditNetworkDataSourceImplementation(private val redditPageApi: RedditPag
     RedditNetworkDataSource {
 
     override suspend fun fetchData(nameId: String?, pageCount: Int): List<RedditPage> {
-        return redditPageApi.getDataFromPage().toRedditPageList()
+        return redditPageApi.getDataFromPage(name = nameId, limit = pageCount).toRedditPageList()
     }
 }

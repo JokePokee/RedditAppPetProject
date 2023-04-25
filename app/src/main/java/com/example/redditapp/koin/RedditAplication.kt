@@ -3,6 +3,7 @@ package com.example.redditapp.koin
 import android.app.Application
 import com.example.reddit_di.appModule
 import com.example.reddit_di.retrofitServiceModule
+import com.example.reddit_di.viewModels
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.workmanager.koin.workManagerFactory
@@ -16,10 +17,10 @@ class RedditAplication: Application(), KoinComponent {
         startKoin {
             androidLogger()
             androidContext(this@RedditAplication)
-            workManagerFactory()
             modules(
                 retrofitServiceModule,
-                appModule
+                appModule,
+                viewModels
             )
         }
 

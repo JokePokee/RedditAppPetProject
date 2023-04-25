@@ -5,18 +5,43 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.reddit_domain.model.RedditPage
 import com.example.reddit_presentation.R
-import com.example.reddit_presentation.viewmodel.RedditSetupViewModel
 
-class RedditPageAdapter(val listener: Listener, val onScrolledToBottom: (RedditPage) -> (Unit)) :
+class RedditPageAdapter(
+    private val onItemClicked: (RedditPage) -> (Unit),
+    private val onScrolledToBottom: () -> (Unit)
+) :
     RecyclerView.Adapter<RedditPageAdapter.RedditPageViewHolder>() {
 
 
+    private var redditPages = mutableListOf<RedditPage>()
+        set(value) {
+            val diffUtil = object : DiffUtil.Callback() {
+                override fun getOldListSize() = field.size
 
-    private val data = mutableListOf<RedditPage>()
+                override fun getNewListSize() = value.size
+
+                override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                    return field[oldItemPosition].name == value[newItemPosition].name
+                }
+
+                override fun areContentsTheSame(
+                    oldItemPosition: Int,
+                    newItemPosition: Int
+                ): Boolean {
+                    return field[oldItemPosition] == value[newItemPosition]
+                }
+            }
+            val diffResult = DiffUtil.calculateDiff(diffUtil)
+            field.clear()
+            field.addAll(value)
+            diffResult.dispatchUpdatesTo(this)
+        }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RedditPageViewHolder {
         return RedditPageViewHolder(
@@ -26,23 +51,23 @@ class RedditPageAdapter(val listener: Listener, val onScrolledToBottom: (RedditP
     }
 
     override fun getItemCount(): Int {
-        return data.size
-    
+        return redditPages.size
+
     }
 
     override fun onBindViewHolder(holder: RedditPageViewHolder, position: Int) {
-        holder.bind(data[position], listener)
-        if (position == data.lastIndex) {
-            onScrolledToBottom(data[position])
+        holder.bind(redditPages[position])
+        if (position == redditPages.lastIndex) {
+            onScrolledToBottom()
         }
 
     }
 
 
-    class RedditPageViewHolder(view: View) :
+    inner class RedditPageViewHolder(view: View) :
         RecyclerView.ViewHolder(view) {
 
-        fun bind(redditPage: RedditPage, listener: Listener) {
+        fun bind(redditPage: RedditPage) {
 
 
             itemView.findViewById<TextView>(R.id.tvSubreddit).apply {
@@ -69,21 +94,14 @@ class RedditPageAdapter(val listener: Listener, val onScrolledToBottom: (RedditP
                     .into(this)
             }
             itemView.setOnClickListener {
-                listener.onClick(redditPage)
+                onItemClicked(redditPage)
             }
 
         }
     }
 
     fun setData(list: List<RedditPage>) {
-        data.clear()
-        data.addAll(list)
-        notifyDataSetChanged()
+        redditPages = list.toMutableList()
 
     }
-
-    interface Listener {
-        fun onClick(redditPage: RedditPage)
-    }
-
 }

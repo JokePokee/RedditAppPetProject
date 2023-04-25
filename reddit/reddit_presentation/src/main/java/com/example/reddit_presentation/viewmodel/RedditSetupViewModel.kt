@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.reddit_domain.delegates.RedditPageLinkOpenerDelegate
 import com.example.reddit_domain.dispatcher.DefaultDispatcherProvider
 import com.example.reddit_domain.dispatcher.DispatcherProvider
 import com.example.reddit_domain.model.RedditPage
@@ -13,11 +14,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class RedditSetupViewModel(
+    private val redditPageLinkOpenerDelegate: RedditPageLinkOpenerDelegate,
     private val fetchDataUseCase: FetchDataUseCase
 ) : ViewModel() {
 
     var redditLiveData = MutableLiveData<List<RedditPage>>()
     var isLoading = false
+
     init {
         viewModelScope.launch {
             isLoading = true
@@ -39,6 +42,10 @@ class RedditSetupViewModel(
                 isLoading = false
             }
         }
+    }
+
+    fun onItemClicked(redditPage: RedditPage) {
+        redditPageLinkOpenerDelegate.openRedditPage(redditPage.permalink)
     }
 
 }
