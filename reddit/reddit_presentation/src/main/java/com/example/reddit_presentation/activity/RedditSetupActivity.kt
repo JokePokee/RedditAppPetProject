@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.RedditApp.MySplash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FFFFFF</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/reddit_logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.Design</item>
+
+    </style>
+    
+    
+</resources>

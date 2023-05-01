@@ -1,15 +1,18 @@
 package com.example.reddit_presentation.adapter
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.reddit_domain.model.RedditPage
 import com.example.reddit_presentation.R
+import com.example.reddit_presentation.findPostCreated
 
 class RedditPageAdapter(
     private val onItemClicked: (RedditPage) -> (Unit),
@@ -67,6 +70,7 @@ class RedditPageAdapter(
     inner class RedditPageViewHolder(view: View) :
         RecyclerView.ViewHolder(view) {
 
+        @RequiresApi(Build.VERSION_CODES.S)
         fun bind(redditPage: RedditPage) {
 
 
@@ -77,7 +81,7 @@ class RedditPageAdapter(
                 text = redditPage.author
             }
             itemView.findViewById<TextView>(R.id.tvPostDate).apply {
-                text = redditPage.postDate.toString()
+                text = redditPage.findPostCreated(redditPage.postDate)
             }
             itemView.findViewById<TextView>(R.id.tvTitle).apply {
                 text = redditPage.title
@@ -99,6 +103,8 @@ class RedditPageAdapter(
 
         }
     }
+
+
 
     fun setData(list: List<RedditPage>) {
         redditPages = list.toMutableList()

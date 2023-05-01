@@ -18,7 +18,8 @@
         <activity
             android:name=".koin.MainActivity"
             android:noHistory="true"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.RedditApp.MySplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

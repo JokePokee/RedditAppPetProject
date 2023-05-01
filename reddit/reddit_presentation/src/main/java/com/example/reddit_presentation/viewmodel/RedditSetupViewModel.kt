@@ -12,6 +12,8 @@ import com.example.reddit_domain.repositories.RedditRepository
 import com.example.reddit_domain.usecases.FetchDataUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.time.Duration
+import java.time.Instant
 
 class RedditSetupViewModel(
     private val redditPageLinkOpenerDelegate: RedditPageLinkOpenerDelegate,
@@ -48,4 +50,7 @@ class RedditSetupViewModel(
         redditPageLinkOpenerDelegate.openRedditPage(redditPage.permalink)
     }
 
+    fun whenPostCreated(){
+
+    }
 }
